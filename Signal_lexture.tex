@@ -1,6 +1,6 @@
 \documentclass{beamer}
 \usetheme{Warsaw}
-\usecolortheme{dolphin}
+\usecolortheme{seahorse}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -35,16 +35,16 @@ Introduction to Fourier Transform and Signal Analysis by Zong-han, Xie (\href{ic
 \mathbf{a}^* \cdot \mathbf{b} = 0
 \label{eq:ortho_vec}
 \end{eqnarray}
-\item Any two functions $f(x)$, $g(x)$ satisfied the following condition are mutually orthogonal. \newline
+\item Any two functions $a(x)$, $b(x)$ satisfied the following condition are mutually orthogonal. \newline
 \begin{eqnarray}
-\int{f^*(x)} \cdot {g(x)} dx = 0
+\int{a^*(x)} \cdot {b(x)} dx = 0
 \label{eq:ortho_func}
 \end{eqnarray}
 \item * means complex conjugate. \newline
 \end{itemize}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series}
+\frametitle{Complete and Orthogonal Basis}
 \begin{itemize}
 \item $\cos nx $ and $\sin mx$ are mutually orthogonal in which n and m are integers.
 \begin{eqnarray}
@@ -57,8 +57,7 @@ Introduction to Fourier Transform and Signal Analysis by Zong-han, Xie (\href{ic
 \end{frame}
 \begin{frame}
 \frametitle{Fourier Series}
-\begin{itemize}
-\item Since $\cos nx $ and $\sin mx$ are mutually orthogonal, we can expand an arbitrary function $f(x)$ with them. we shall have a series expansion.
+Since $\cos nx $ and $\sin mx$ are mutually orthogonal, we can expand an arbitrary periodic function $f(x)$ by them. we shall have a series expansion of $f(x)$ which has $2\pi$ period.
 \begin{eqnarray}
 f(x)&=&a_0 + \sum_{k=1}^{\infty} \left(a_k\cos kx + b_k \sin kx\right) \nonumber \\
 a_0&=&\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x) dx \nonumber \\
@@ -66,17 +65,80 @@ a_k&=&\frac{1}{\pi}\int_{-\pi}^{\pi}f(x) \cos kx dx \nonumber \\
 b_k&=&\frac{1}{\pi}\int_{-\pi}^{\pi}f(x) \sin kx dx
 \label{eq:fseries}
 \end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Complex Fourier Series}
+Using Euler's formula, equation (\ref{eq:fseries}) becomes 
+\begin{eqnarray}
+f(x)=a_0 + \sum_{k=1}^{\infty} \left(\frac{a_k - ib_k}{2} e^{ikx} + \frac{a_k + ib_k}{2}e^{-ikx}\right) \nonumber
+\end{eqnarray}
+Let $c_0 \equiv a_0$, $c_k \equiv \frac{a_k - ib_k}{2}$ and $c_{-k} \equiv \frac{a_k + ib_k}{2}$, we have
+\begin{eqnarray}
+f(x)=\sum_{m=-\infty}^{\infty} c_m e^{imx}
+\label{eq:cfseries}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier Transform}
+\end{frame}
+\begin{frame}
+\frametitle{Convolution Theory and Parseval Relation}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier Transform of a Gaussian Function}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier Transform of a Gaussian Function with Carrier}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier Transform of a Step Function}
+\end{frame}
+\begin{frame}
+\frametitle{Transfer Function}
+\end{frame}
+\section{Discrete Fourier Transform}
+\begin{frame}
+\frametitle{From Continuous to Discrete Fourier Transform}
+\end{frame}
+\begin{frame}
+\frametitle{Frequency Bins and Nyquist Frequency}
+\end{frame}
+\begin{frame}
+\frametitle{Concept of Nyquist-Shannon Frequency}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing}
+\end{frame}
+\begin{frame}
+\frametitle{Window Functions}
+\end{frame}
+\begin{frame}
+\frametitle{Window Function}
+\end{frame}
+\begin{frame}
+\frametitle{Fast Fourier Transform}
+\end{frame}
+\section{Calculate DFT with Python Numpy Package}
+\begin{frame}
+\frametitle{Discrete Fourier Transform in Numpy or Scipy}
+\end{frame}
+\begin{frame}
+\frametitle{Transform One Dimensional Data}
+\end{frame}
+\begin{frame}
+\frametitle{Transform More than One Dimensional Data}
+\end{frame}
+\section{References}
+\begin{frame}
+\frametitle{References}
+\begin{itemize}
+\item \url{http://idv.sinica.edu.tw/jwang/SNGP/SNGP20090621.pdf}
+\item MATHEMATICAL METHODS FOR PHYSICISTS by George B. Arfken and Hans J. Weber. ISBN-13: 978-0120598762
+\item Numerical Recipes 3rd Edition: The Art of Scientific Computing by William H. Press  (Author), Saul A. Teukolsky. ISBN-13: 978-0521880688
+\item Chapter 12 and 13 in \url{http://www.nrbook.com/a/bookcpdf.php}
 \end{itemize}
 \end{frame}
-\section{From Continuous to Discrete Fourier Transform}
-\begin{frame}
-
-\end{frame}
-\section{Calculate DFT with Python-numpy}
-\begin{frame}
-
-\end{frame}
-
+\section{}
 %---------------Examples of Latex---------
 \begin{frame}
 \frametitle{2nd page}
