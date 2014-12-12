@@ -60,7 +60,7 @@ class SawToothFunction(object):
         f5 = self.fseries(x, 5)
         f10 = self.fseries(x, 10)
         f20 = self.fseries(x, 20)
-        plt.plot(x, y, label="Step Function")
+        plt.plot(x, y, label="Saw-tooth Function")
         plt.plot(x, f3, label="Fourier series to n = 3")
         plt.plot(x, f5, label="Fourier series to n = 5")
         plt.plot(x, f10, label="Fourier series to n = 10")
@@ -96,7 +96,7 @@ class FullRectifierFunction(object):
         f5 = self.fseries(x, 5)
         f10 = self.fseries(x, 10)
         f20 = self.fseries(x, 20)
-        plt.plot(x, y, label="Step Function")
+        plt.plot(x, y, label="Full rectifier")
         plt.plot(x, f3, label="Fourier series to n = 3")
         plt.plot(x, f5, label="Fourier series to n = 5")
         plt.plot(x, f10, label="Fourier series to n = 10")
@@ -122,11 +122,10 @@ class FullRectifierFunction(object):
 class PlotObject(object):
     def __init__(self):
 	    self.plotlist = {}
-	    self.plotlist = {0:StepFunction, 1:SawToothFunction, 2:FullRectifierFunction, 3: SecondOrderFunction}
+	    self.plotlist = {0:StepFunction, 1:SawToothFunction, 2:FullRectifierFunction}
 	    self.plothelp = {0:"StepFuntion", \
                          1:"SawToothFunction", \
-        				 2:"FullRectifierFunction", \
-        				 3:"SecondOrderFunction"}
+        				 2:"FullRectifierFunction"}
     def getPlotObject(self, num):
         return self.plotlist[num]
 	
