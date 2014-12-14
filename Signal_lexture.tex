@@ -5,7 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 %\usepackage{CJKutf8}
-\title{Introduction to Fourier Transform and Signal Analysis}
+\title{Introduction to Fourier transform and signal analysis}
 \author{\texorpdfstring{Zong-han, Xie\newline\url{icbm0926@gmail.com}}{Zong-han, Xie}}
 \begin{document}
 %\begin{CJK}{UTF8}{cwmc}
@@ -26,9 +26,9 @@ Introduction to Fourier Transform and Signal Analysis by Zong-han, Xie (\href{ic
     \tableofcontents[currentsection]
   \end{frame}
 }
-\section{Continuous Fourier Transform}
+\section{Continuous Fourier transform}
 \begin{frame}
-\frametitle{Orthogonal Condition}
+\frametitle{Orthogonal condition}
 \begin{itemize}
 \item Any two vectors $\mathbf{a}$, $\mathbf{b}$ satisfied the following condition are mutually orthogonal. \newline
 \begin{eqnarray}
@@ -44,7 +44,7 @@ Introduction to Fourier Transform and Signal Analysis by Zong-han, Xie (\href{ic
 \end{itemize}
 \end{frame}
 \begin{frame}
-\frametitle{Complete and Orthogonal Basis}
+\frametitle{Complete and orthogonal basis}
 \begin{itemize}
 \item $\cos nx $ and $\sin mx$ are mutually orthogonal in which n and m are integers.
 \begin{eqnarray}
@@ -56,7 +56,7 @@ Introduction to Fourier Transform and Signal Analysis by Zong-han, Xie (\href{ic
 \end{itemize}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series}
+\frametitle{Fourier series}
 Since $\cos nx $ and $\sin mx$ are mutually orthogonal, we can expand an arbitrary periodic function $f(x)$ by them. we shall have a series expansion of $f(x)$ which has $2\pi$ period.
 \begin{eqnarray}
 f(x)&=&a_0 + \sum_{k=1}^{\infty} \left(a_k\cos kx + b_k \sin kx\right) \nonumber \\
@@ -67,31 +67,41 @@ b_k&=&\frac{1}{\pi}\int_{-\pi}^{\pi}f(x) \sin kx dx
 \end{eqnarray}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series}
-If $f(x)$ has $2L$ period instead of $2\pi$, $x$ is replaced with $\pi x /L$.
+\frametitle{Fourier series}
+If $f(x)$ has $L$ period instead of $2\pi$, $x$ is replaced with $\pi x /L$.
 \begin{eqnarray}
-f(x)&=&a_0 + \sum_{k=1}^{\infty} \left(a_k\cos kx + b_k \sin kx\right) \nonumber \\
-a_0&=&\frac{1}{2L}\int_{-L}^{L}f(x) dx \nonumber \\
-a_k&=&\frac{1}{L}\int_{-L}^{L}f(x) \cos kx dx \nonumber \\
-b_k&=&\frac{1}{L}\int_{-L}^{L}f(x) \sin kx dx
+f(x)&=&a_0 + \sum_{k=1}^{\infty} \left(a_k\cos \frac{2k\pi x}{L} + b_k \sin \frac{2k\pi x}{L}\right) \nonumber \\
+a_0&=&\frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x) dx \nonumber \\
+a_k&=&\frac{2}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x) \cos \frac{2k\pi x}{L} dx, k = 1,2,...\nonumber \\
+b_k&=&\frac{2}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x) \sin \frac{2k\pi x}{L} dx, k = 1,2,...
 \label{eq:fseries_pL}
 \end{eqnarray}
 \end{frame}
 \begin{frame}
-\frametitle{Complex Fourier Series}
+\frametitle{Complex Fourier series}
 Using Euler's formula, equation (\ref{eq:fseries}) becomes 
 \begin{eqnarray}
 f(x)=a_0 + \sum_{k=1}^{\infty} \left(\frac{a_k - ib_k}{2} e^{ikx} + \frac{a_k + ib_k}{2}e^{-ikx}\right) \nonumber
 \end{eqnarray}
 Let $c_0 \equiv a_0$, $c_k \equiv \frac{a_k - ib_k}{2}$ and $c_{-k} \equiv \frac{a_k + ib_k}{2}$, we have
 \begin{eqnarray}
-f(x)=\sum_{m=-\infty}^{\infty} c_m e^{imx}
+f(x)&=&\sum_{m=-\infty}^{\infty} c_m e^{imx} \nonumber \\
+c_m&=&\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x) e^{-imx} dx
 \label{eq:cfseries}
 \end{eqnarray}
-$e^{imx}$ and $e^{inx}$ are also mutually orthogonal provided $n \neq m$ and it forms a complete set. Therfore, it can be used as orthogonal basis.
+$e^{imx}$ and $e^{inx}$ are also mutually orthogonal provided $n \neq m$ and it forms a complete set. Therfore, it can be used as orthogonal basis.\newline
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of Step Function}
+\frametitle{Complex Fourier series}
+If $f(x)$ has $T$ period instead of $2\pi$, $x$ is replaced with $2\pi x /T$.
+\begin{eqnarray}
+f(x)&=&\sum_{m=-\infty}^{\infty} c_m e^{i\frac{2\pi mx}{T}} \nonumber \\
+c_m&=&\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{-i\frac{2\pi mx}{T}} dx, m = 0,1,2...
+\label{eq:cfseries_pT}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier Series of step function}
 $f(x)$ is a periodic function with $2\pi$ period and it's defined as follows.
 \begin{eqnarray}
 f(x)&=& 0, -\pi < x < 0 \nonumber \\
@@ -106,11 +116,11 @@ f(x)= \frac{h}{2} + \frac{2h}{\pi} \left( \frac{\sin x}{1} + \frac{\sin 3x}{3} +
 $f(x)$ is piecewise continuous within the periodic region. Fourier series of $f(x)$ converges at speed of $1/n$.
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of Step Function}
+\frametitle{Fourier series of step function}
 \includegraphics[scale=0.3]{step.png}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of Saw Tooth Function}
+\frametitle{Fourier series of saw tooth function}
 $f(x)$ is a periodic function with $2\pi$ period and it's defined as follows.
 \begin{eqnarray}
 f(x)&=& -x, -\pi < x < 0 \nonumber \\
@@ -125,11 +135,11 @@ f(x)= \frac{\pi}{2} - \frac{4}{\pi} \sum_{n=1,3,5...} \left( \frac{\cos nx}{n^2}
 $f(x)$ is continuous and its derivative is piecewise continuous within the periodic region. Fourier series of $f(x)$ converges at speed of $1/n^2$.
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of Saw Tooth Function}
+\frametitle{Fourier series of saw tooth function}
 \includegraphics[scale=0.3]{sawtooth.png}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of Full Wave Rectifier}
+\frametitle{Fourier series of full wave rectifier}
 $f(t)$ is a periodic function with $2\pi$ period and it's defined as follows.
 \begin{eqnarray}
 f(t)&=& -\sin {\omega t}, -\pi < t < 0 \nonumber \\
@@ -144,65 +154,100 @@ f(t)= \frac{2}{\pi} - \frac{4}{\pi} \sum_{n=2,4,6...} \left( \frac{\cos n\omega 
 $f(x)$ is continuous and its derivative is piecewise continuous within the periodic region. Fourier series of $f(x)$ converges at speed of $1/n^2$.
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of Full Wave Rectifier}
+\frametitle{Fourier series of full wave rectifier}
 \includegraphics[scale=0.3]{fullrectifier.png}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Transform}
+\frametitle{Fourier transform}
+from Eq. \ref{eq:cfseries_pT}, we define variables $k \equiv \frac{2\pi m}{T}$, $\hat{f}(k) \equiv\frac{c_mT}{\sqrt{2\pi}}$ and $ \bigtriangleup{k} \equiv \frac{2\pi (m+1)}{T} - \frac{2\pi m}{T} = \frac{2\pi}{T}$. \newline We can have
+\begin{eqnarray}
+f(x)&=&\frac{1}{\sqrt{(2\pi)}}\sum_{m=-\infty}^{\infty} \hat{f}(k) e^{ikx} \bigtriangleup{k} \nonumber \\
+\hat{f}(k)&=&\frac{1}{\sqrt{2\pi}}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{-ikx}dx\nonumber
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier transform}
+Let $T\longrightarrow\infty$
+\begin{eqnarray}
+f(x)&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \hat{f}(k) e^{ikx} dk
+\label{eq:ftransform_inv}\\
+\hat{f}(k)&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x) e^{-ikx} dx
+\label{eq:ftransform}
+\end{eqnarray}
+Eq.\ref{eq:ftransform} is the \emph{Fourier transform} of $f(x)$ and Eq.\ref{eq:ftransform_inv} is the \emph{inverse Fourier transform} of $\hat{f}(k)$.
+\end{frame}
+\begin{frame}
+\frametitle{Convolution theory and Parseval relation}
+Considering two functions $f(x)$ and $g(x)$ with Fourier transform $F(t)$ and $G(t)$. We define an operation
+\begin{eqnarray}
+f\ast g = \int_{-\infty}^{\infty}g(y)f(x-y)dy
+\label{eq:convolution}
+\end{eqnarray}
+as convolution of the two functions $f(x)$ and $g(x)$ over the interval $\left{-\infty ~ \infty \right}$. It satisfies the following relation:
+\begin{eqnarray}
+f \ast g = \int_{-\infty}^{\infty}F(t)G(t) e^{itx}dt
+\label{eq:convolution_theorem}
+\end{eqnarray}
 
 \end{frame}
 \begin{frame}
-\frametitle{Convolution Theory and Parseval Relation}
+\frametitle{Correlation}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Transform of a Gaussian Function}
+\frametitle{Uncertainty principle}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Transform of a Gaussian Function with Carrier}
+\frametitle{Fourier transform of a Gaussian function}
 \end{frame}
 \begin{frame}
-\frametitle{Transfer Function}
-\end{frame}
-\section{Discrete Fourier Transform}
-\begin{frame}
-\frametitle{From Continuous to Discrete Fourier Transform}
+\frametitle{Fourier transform of a Gaussian function with carrier}
 \end{frame}
 \begin{frame}
-\frametitle{Frequency Bins and Nyquist Frequency}
+\frametitle{Transfer function}
+\end{frame}
+\section{Discrete Fourier transform}
+\begin{frame}
+\frametitle{From continuous to discrete Fourier transform}
 \end{frame}
 \begin{frame}
-\frametitle{Concept of Nyquist-Shannon Frequency}
+\frametitle{Frequency bins and nyquist frequency}
+\end{frame}
+\begin{frame}
+\frametitle{Concept of Nyquist-Shannon frequency}
 \end{frame}
 \begin{frame}
 \frametitle{Aliasing}
 \end{frame}
 \begin{frame}
-\frametitle{Window Functions}
+\frametitle{Window functions}
 \end{frame}
 \begin{frame}
 \frametitle{Filter}
 \end{frame}
 \begin{frame}
-\frametitle{Fast Fourier Transform}
+\frametitle{Fast Fourier transform}
 \end{frame}
 \section{Calculate DFT with Python Numpy Package}
 \begin{frame}
-\frametitle{Discrete Fourier Transform in Numpy or Scipy}
+\frametitle{Discrete Fourier transform in Numpy or Scipy}
 \end{frame}
 \begin{frame}
-\frametitle{Transform One Dimensional Data}
+\frametitle{Transform one dimensional data}
 \end{frame}
 \begin{frame}
-\frametitle{Transform More than One Dimensional Data}
+\frametitle{Transform more than one dimensional data}
 \end{frame}
 \section{References}
 \begin{frame}
 \frametitle{References}
 \begin{itemize}
 \item \url{http://idv.sinica.edu.tw/jwang/SNGP/SNGP20090621.pdf}
+\item \url{http://en.wikipedia.org/wiki/Fourier_series}
+\item \url{http://en.wikipedia.org/wiki/Fourier_transform}
 \item MATHEMATICAL METHODS FOR PHYSICISTS by George B. Arfken and Hans J. Weber. ISBN-13: 978-0120598762
 \item Numerical Recipes 3rd Edition: The Art of Scientific Computing by William H. Press  (Author), Saul A. Teukolsky. ISBN-13: 978-0521880688
 \item Chapter 12 and 13 in \url{http://www.nrbook.com/a/bookcpdf.php}
+\item Digital Signal Processing: A Computer-Based Approach, 3e by Sanjit K. Mitra
 \end{itemize}
 \end{frame}
 \section{}
