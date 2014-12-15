@@ -1,1 +1,1 @@
-Contents in this projects are created by Zong-han, Xie (\href{icbm0926@gmail.com}{icbm0926@gmail.com}) and they are licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+Contents in this projects are created by Zong-han, Xie ([icbm0926@gmail.com](icbm0926@gmail.com)) and they are licensed under a Creative Commons Attribution-NonCommercial 4.0 by name, non-commercial, ShareAlike International License.
