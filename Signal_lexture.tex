@@ -161,7 +161,7 @@ $f(x)$ is continuous and its derivative is piecewise continuous within the perio
 \frametitle{Fourier transform}
 from Eq. \ref{eq:cfseries_pT}, we define variables $k \equiv \frac{2\pi m}{T}$, $\hat{f}(k) \equiv\frac{c_mT}{\sqrt{2\pi}}$ and $ \bigtriangleup{k} \equiv \frac{2\pi (m+1)}{T} - \frac{2\pi m}{T} = \frac{2\pi}{T}$. \newline We can have
 \begin{eqnarray}
-f(x)&=&\frac{1}{\sqrt{(2\pi)}}\sum_{m=-\infty}^{\infty} \hat{f}(k) e^{ikx} \bigtriangleup{k} \nonumber \\
+f(x)&=&\frac{1}{\sqrt{2\pi}}\sum_{m=-\infty}^{\infty} \hat{f}(k) e^{ikx} \bigtriangleup{k} \nonumber \\
 \hat{f}(k)&=&\frac{1}{\sqrt{2\pi}}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{-ikx}dx\nonumber
 \end{eqnarray}
 \end{frame}
@@ -185,7 +185,7 @@ f\ast g = \int_{-\infty}^{\infty}g(y)f(x-y)dy
 \end{eqnarray}
 as the convolution of the two functions $f(x)$ and $g(x)$ over the interval $\{ -\infty \sim \infty \}$. It satisfies the following relation:
 \begin{eqnarray}
-f \ast g = \int_{-\infty}^{\infty}F(t)G(t) e^{ikx}dt
+f \ast g = \int_{-\infty}^{\infty}F(k)G(k) e^{ikx}dt
 \label{eq:convolution_theorem}
 \end{eqnarray}
 \end{frame}
