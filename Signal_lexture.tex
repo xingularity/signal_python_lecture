@@ -178,17 +178,16 @@ Eq.\ref{eq:ftransform} is the \emph{Fourier transform} of $f(x)$ and Eq.\ref{eq:
 \end{frame}
 \begin{frame}
 \frametitle{Convolution theory and Parseval relation}
-Considering two functions $f(x)$ and $g(x)$ with Fourier transform $F(t)$ and $G(t)$. We define an operation
+Considering two functions $f(x)$ and $g(x)$ with their Fourier transform $F(k)$ and $G(k)$. We define an operation
 \begin{eqnarray}
 f\ast g = \int_{-\infty}^{\infty}g(y)f(x-y)dy
 \label{eq:convolution}
 \end{eqnarray}
-as convolution of the two functions $f(x)$ and $g(x)$ over the interval $\left{-\infty ~ \infty \right}$. It satisfies the following relation:
+as the convolution of the two functions $f(x)$ and $g(x)$ over the interval $\{ -\infty \sim \infty \}$. It satisfies the following relation:
 \begin{eqnarray}
-f \ast g = \int_{-\infty}^{\infty}F(t)G(t) e^{itx}dt
+f \ast g = \int_{-\infty}^{\infty}F(t)G(t) e^{ikx}dt
 \label{eq:convolution_theorem}
 \end{eqnarray}
-
 \end{frame}
 \begin{frame}
 \frametitle{Correlation}
