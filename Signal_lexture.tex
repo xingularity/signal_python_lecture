@@ -3,7 +3,10 @@
 \usecolortheme{seahorse}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{epstopdf}
 \usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{movie15}
 %\usepackage{CJKutf8}
 \title{Introduction to Fourier transform and signal analysis}
 \author{\texorpdfstring{Zong-han, Xie\newline\url{icbm0926@gmail.com}}{Zong-han, Xie}}
@@ -177,7 +180,22 @@ f(x)&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \hat{f}(k) e^{ikx} dk
 Eq.\ref{eq:ftransform} is the \emph{Fourier transform} of $f(x)$ and Eq.\ref{eq:ftransform_inv} is the \emph{inverse Fourier transform} of $\hat{f}(k)$.
 \end{frame}
 \begin{frame}
-\frametitle{Convolution theory and Parseval relation}
+\frametitle{Fourier transform}
+From Eq.\ref{eq:ftransform} and Eq.\ref{eq:ftransform_inv}
+\begin{eqnarray}
+\hat{f}(k)&=&\frac{1}{2\pi}\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \hat{f}(k') e^{ik'x} dk' e^{-ikx} dx \nonumber \\
+          &=&\frac{1}{2\pi}\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \hat{f}(k') e^{i(k'-k)x} dx dk' \nonumber
+\end{eqnarray}
+Comparing to "Delta function", we have
+\begin{eqnarray}
+\hat{f}(k)&=&\int_{-\infty}^{\infty} \hat{f}(k') \delta{(k'- k)} dk' \nonumber \\
+\delta{(k'- k)} &=& \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{i(k'-k)x} dx
+\label{eq:dirac_delta_fourier}
+\end{eqnarray}
+Eq.\ref{eq:dirac_delta_fourier} doesn't converge by itself, it is only well defined as part of an integrand.
+\end{frame}
+\begin{frame}
+\frametitle{Convolution theory}
 Considering two functions $f(x)$ and $g(x)$ with their Fourier transform $F(k)$ and $G(k)$. We define an operation
 \begin{eqnarray}
 f\ast g = \int_{-\infty}^{\infty}g(y)f(x-y)dy
@@ -188,10 +206,29 @@ as the convolution of the two functions $f(x)$ and $g(x)$ over the interval $\{ 
 f \ast g = \int_{-\infty}^{\infty}F(k)G(k) e^{ikx}dt
 \label{eq:convolution_theorem}
 \end{eqnarray}
-It shows that convolution of two functions is the same as the inverse Fourier transform of the direct product of their Fourier transform.
+Let $h(x)$ be $f \ast g$ and $\hat{h}(k)$ be the Fourier transform of $h(x)$, we have
+\begin{eqnarray}
+\hat{h}(k) = \sqrt{2\pi}F(k)G(k)
+\label{eq:convolution_theorem2}
+\end{eqnarray}
 \end{frame}
 \begin{frame}
-\frametitle{Correlation}
+\frametitle{Parseval relation}
+\begin{eqnarray}
+\int_{-\infty}^{\infty}f(x)g(x)^* dx &=&\int_{-\infty}^{\infty}  \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} F(k) e^{ikx}dk \frac{1}{\sqrt{2\pi}} \nonumber \\
+&&\int_{-\infty}^{\infty}G^*(k') e^{-ik'x}dk' dx\nonumber \\
+&=&\int_{-\infty}^{\infty} \frac{1}{2\pi} \int_{-\infty}^{\infty} F(k)G^*(k')e^{i(k-k')x} dk dk' \nonumber
+\end{eqnarray}
+By using \ref{eq:dirac_delta_fourier}, we have the Parseval's relation.
+\begin{eqnarray}
+\int_{-\infty}^{\infty}f(x)g^*(x) dx &=& \int_{-\infty}^{\infty}F(k)G^*(k)dk
+\label{eq:parseval_relation}
+\end{eqnarray}
+Calculating inner product of two fuctions gets same result as the inner product of their Fourier transform.
+\end{frame}
+\begin{frame}
+\frametitle{Cross-correlation}
+
 \end{frame}
 \begin{frame}
 \frametitle{Uncertainty principle}
