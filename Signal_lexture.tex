@@ -180,13 +180,48 @@ f(x)&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \hat{f}(k) e^{ikx} dk
 Eq.\ref{eq:ftransform} is the \emph{Fourier transform} of $f(x)$ and Eq.\ref{eq:ftransform_inv} is the \emph{inverse Fourier transform} of $\hat{f}(k)$.
 \end{frame}
 \begin{frame}
-\frametitle{Fourier transform}
+\frametitle{Properties of Fourier transform}
+$f(x)$, $g(x)$ and $h(x)$ are functions and  their Fourier transforms are $\hat{f}(k)$, $\hat{g}(k)$ and $\hat{h}(k)$. $a$, $b$ $x_0$ and $k_0$ are real numbers.
+\begin{itemize}
+\item Linearity: If $h(x) = af(x)+bg(x)$, then Fourier transform of $h(x)$ equals to $\hat{h}(k) = a\hat{f}(k)+b\hat{g}(k)$.
+\item Translation: If $h(x) = f(x-x_0)$, then $\hat{h}(k) = \hat{f}(k)e^{-ikx_0}$
+\item Modulation: If $h(x) = e^{ik_0x}f(x)$, then $\hat{h}(k) = \hat{f}(k-k_0)$
+\item Scaling: If $h(x) = f(ax)$, then $\hat{h}(k) = \frac{1}{a}\hat{f}(\frac{k}{a})$
+\item Conjugation: If $h(x) = f^*(x)$, then $\hat{h}(k) = \hat{f}^*(-k)$. With this property, one can know that if $f(x)$ is real and then $\hat{f}^*(-k) = \hat{f}(k)$. One can also find that if $f(x)$ is real and then $|\hat{f}(k)| = |\hat{f}(-k)|$.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Properties of Fourier transform}
+\begin{itemize}
+\item If $f(x)$ is even, then $\hat{f}(-k) = \hat{f}(k)$.
+\item If $f(x)$ is odd, then $\hat{f}(-k) = -\hat{f}(k)$.
+\item If $f(x)$ is real and even, then $\hat{f}(k)$ is real and even.
+\item If $f(x)$ is real and odd, then $\hat{f}(k)$ is imaginary and odd.
+\item If $f(x)$ is imaginary and even, then $\hat{f}(k)$ is imaginary and even.
+\item If $f(x)$ is imaginary and odd, then $\hat{f}(k)$ is real and odd.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Dirac delta function}
+Dirac delta function is a generalized function defined as the following equation.
+\begin{eqnarray}
+f(0) &=&\int_{-\infty}^{\infty} f(x)\delta{(x)} dx \nonumber \\
+\int_{-\infty}^{\infty}\delta{(x)} dx &=& 1
+\label{eq:dirac_delta}
+\end{eqnarray}
+The Dirac delta function can be loosely thought as a function which equals to infinite at $x = 0$ and to zero else where.
+\begin{eqnarray}
+\delta(x) = \begin{cases} +\infty, & x = 0 \\ 0, & x \ne 0 \end{cases} \nonumber
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Dirac delta function}
 From Eq.\ref{eq:ftransform} and Eq.\ref{eq:ftransform_inv}
 \begin{eqnarray}
 \hat{f}(k)&=&\frac{1}{2\pi}\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \hat{f}(k') e^{ik'x} dk' e^{-ikx} dx \nonumber \\
           &=&\frac{1}{2\pi}\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \hat{f}(k') e^{i(k'-k)x} dx dk' \nonumber
 \end{eqnarray}
-Comparing to "Delta function", we have
+Comparing to "Dirac delta function", we have
 \begin{eqnarray}
 \hat{f}(k)&=&\int_{-\infty}^{\infty} \hat{f}(k') \delta{(k'- k)} dk' \nonumber \\
 \delta{(k'- k)} &=& \frac{1}{2\pi}\int_{-\infty}^{\infty} e^{i(k'-k)x} dx
@@ -239,10 +274,15 @@ Calculating inner product of two fuctions gets same result as the inner product 
 \end{frame}
 \begin{frame}
 \frametitle{Transfer function}
+
 \end{frame}
 \section{Discrete Fourier transform}
 \begin{frame}
 \frametitle{Discrete Fourier transform}
+
+\end{frame}
+\begin{frame}
+\frametitle{Power spectrum}
 
 \end{frame}
 \begin{frame}
@@ -256,9 +296,11 @@ Calculating inner product of two fuctions gets same result as the inner product 
 \end{frame}
 \begin{frame}
 \frametitle{Window functions}
+
 \end{frame}
 \begin{frame}
 \frametitle{Filter}
+
 \end{frame}
 \begin{frame}
 \frametitle{FIR}
