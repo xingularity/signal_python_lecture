@@ -262,8 +262,33 @@ By using \ref{eq:dirac_delta_fourier}, we have the Parseval's relation.
 Calculating inner product of two fuctions gets same result as the inner product of their Fourier transform.
 \end{frame}
 \begin{frame}
+\frametitle{Cross-correlation}
+Considering two functions $f(x)$ and $g(x)$ with their Fourier transform $F(k)$ and $G(k)$. We define cross-correlation as
+\begin{eqnarray}
+(f\star g)(x) = \int_{-\infty}^{\infty}f^*(x+y)g(x)dy
+\label{eq:cross_correlation}
+\end{eqnarray}
+as the cross-correlation of the two functions $f(x)$ and $g(x)$ over the interval $\{ -\infty \sim \infty \}$. It satisfies the following relation:
+Let $h(x)$ be $f \star g$ and $\hat{h}(k)$ be the Fourier transform of $h(x)$, we have
+\begin{eqnarray}
+\hat{h}(k) = \sqrt{2\pi}F^*(k)G(k)
+\label{eq:cross_correlation_FT}
+\end{eqnarray}
+Autocorrelation is the cross-correlation of the signal with itself.
+\begin{eqnarray}
+(f\star f)(x) = \int_{-\infty}^{\infty}f^*(x+y)f(x)dy
+\label{eq:autocorrelation}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
 \frametitle{Uncertainty principle}
-
+One important properties of Fourier transform is uncertainty principle. It states that the more concentrated $f(x)$ is, the more spread its Fourier transform $\hat{f}(k)$ is.
+Without loss of generality, we consider $f(x)$ as a normalized function which means $\int_{-\infty}^{\infty}|f(x)|^2 dx = 1$, we have uncertainty relation:
+\begin{eqnarray}
+\left( \int_{-\infty}^{\infty}(x-x_0)^2|f(x)|^2 dx\right) \left( \int_{-\infty}^{\infty}(k-k_0)^2|\hat{f}(k)|^2 dk\right) \geqq \frac{1}{16\pi^2}
+\label{eq:uncertainty_wiki}
+\end{eqnarray}
+for any $x_0$ and $k_0$ $\in \mathbf{R}$.~\cite{wiki_FT}
 \end{frame}
 \begin{frame}
 \frametitle{Fourier transform of a Gaussian function}
@@ -278,18 +303,60 @@ Calculating inner product of two fuctions gets same result as the inner product 
 \end{frame}
 \section{Discrete Fourier transform}
 \begin{frame}
+\frametitle{Nyquist critical frequency}
+Critical sampling of a sine wave is two sample points per cycle. This leads to \emph{Nyquist critical frequency} $f_c$.
+\begin{eqnarray}
+f_c &=& \frac{1}{2\Delta}
+\label{eq:Nyquist_frequency}
+\end{eqnarray}
+Where $\Delta$ is the sampling interval. Sampling theorem: If a continuos signal $h(t)$ sampled with interval $\Delta$ happens to be bandwidth limited to frequencies smaller than $f_c$. $h(t)$ is completely determined by its samples $h_n$
+\begin{eqnarray}
+h(t) &=& \Delta \sum_{n=-\infty}^{\infty} h_n \frac{\sin [2\pi f_c(t-n\Delta)]}{\pi (t-n\Delta)}
+\label{eq:sampling_theorem}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
 \frametitle{Discrete Fourier transform}
+Signal $h(t)$ is sampled with N consecutive values and sampling interval $\Delta$. We have $h_k \equiv h(t_k)$ and $t_k \equiv k*\Delta$, $k = 0,1,2,...,N-1$. \\
+With N discrete input, we evidently can only output independent values no more than N. Therefore, we seek for frequencies with values
+\begin{eqnarray}
+f_n \equiv \frac{n}{N\Delta}, n = -\frac{N}{2}, ...,\frac{N}{2}
+\label{eq:DFT_Frequencies}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Discrete Fourier transform}
+Fourier transform of Signal $h(t)$ is $H(f)$. We have discrete Fourier transform $H_n$.
+\begin{eqnarray}
+H(f_n)&=&\int_{-\infty}^{\infty}h(t)e^{-i2\pi f_nt}dt \approx \Delta \sum_{k=0}^{N-1}h_ke^{-i2\pi f_nt_k} \nonumber \\
+&=& \Delta \sum_{k=0}^{N-1}h_ke^{-i2\pi kn/N} \nonumber \\
+H_n &\equiv& \sum_{k=0}^{N-1}h_ke^{-i2\pi kn/N}
+\label{eq:dft}
+\end{eqnarray}
+Inverse Fourier transform is
+\begin{eqnarray}
+h_k &\equiv& \frac{1}{N}\sum_{n=0}^{N-1}H_ne^{i2\pi kn/N}
+\label{eq:idft}
+\end{eqnarray}
+Discrete form of Parseval's relation is 
+\begin{eqnarray}
+\sum_{k=0}^{N-1}|h_k|^2 = \frac{1}{N}\sum_{n=0}^{N-1}|H_n|^2
+\label{eq:discrete_parseval}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Periodicity of discrete Fourier transform}
+From Eq.\ref{eq:dft}, if we substitute $n$ with $n+N$, we have $H_n = H_{n+N}$. Therefore, discrete Fourier transform has periodicity of $N$.
+\begin{eqnarray}
+H_{n+N} &=& \sum_{k=0}^{N-1}h_ke^{-i2\pi k(n+N)/N} \nonumber \\
+&=&\sum_{k=0}^{N-1}h_ke^{-i2\pi k(n)/N}e^{-i2\pi kN/N} \nonumber \\
+&=&H_n
+\end{eqnarray}
+Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$.
+\end{frame}
+\begin{frame}
+\frametitle{Power spectral density}
 
-\end{frame}
-\begin{frame}
-\frametitle{Power spectrum}
-
-\end{frame}
-\begin{frame}
-\frametitle{Frequency bins and Nyquist frequency}
-\end{frame}
-\begin{frame}
-\frametitle{Concept of Nyquist-Shannon frequency}
 \end{frame}
 \begin{frame}
 \frametitle{Aliasing}
@@ -338,6 +405,8 @@ Calculating inner product of two fuctions gets same result as the inner product 
 \bibitem{arfken} MATHEMATICAL METHODS FOR PHYSICISTS by George B. Arfken and Hans J. Weber. ISBN-13: 978-0120598762
 \bibitem{nr_3rd} Numerical Recipes 3rd Edition: The Art of Scientific Computing by William H. Press  (Author), Saul A. Teukolsky. ISBN-13: 978-0521880688
 \bibitem{nr_3rd_web} Chapter 12 and 13 in \url{http://www.nrbook.com/a/bookcpdf.php}
+\bibitem{scipy_fft}http://docs.scipy.org/doc/scipy-0.14.0/reference/fftpack.html
+\bibitem{scipy_signal}http://docs.scipy.org/doc/scipy-0.14.0/reference/signal.html
 \end{thebibliography}
 \end{frame}
 \begin{frame}
