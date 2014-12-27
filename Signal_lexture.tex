@@ -309,11 +309,13 @@ Critical sampling of a sine wave is two sample points per cycle. This leads to \
 f_c &=& \frac{1}{2\Delta}
 \label{eq:Nyquist_frequency}
 \end{eqnarray}
-Where $\Delta$ is the sampling interval. Sampling theorem: If a continuos signal $h(t)$ sampled with interval $\Delta$ happens to be bandwidth limited to frequencies smaller than $f_c$. $h(t)$ is completely determined by its samples $h_n$
+Where $\Delta$ is the sampling interval. \\
+Sampling theorem: If a continuos signal $h(t)$ sampled with interval $\Delta$ happens to be bandwidth limited to frequencies smaller than $f_c$. $h(t)$ is completely determined by its samples $h_n$. In fact, $h(t)$ is given by 
 \begin{eqnarray}
 h(t) &=& \Delta \sum_{n=-\infty}^{\infty} h_n \frac{\sin [2\pi f_c(t-n\Delta)]}{\pi (t-n\Delta)}
 \label{eq:sampling_theorem}
 \end{eqnarray}
+It's known as Whittaker–Shannon interpolation formula.
 \end{frame}
 \begin{frame}
 \frametitle{Discrete Fourier transform}
@@ -338,13 +340,17 @@ Inverse Fourier transform is
 h_k &\equiv& \frac{1}{N}\sum_{n=0}^{N-1}H_ne^{i2\pi kn/N}
 \label{eq:idft}
 \end{eqnarray}
+\end{frame}
+%\begin{frame}
+%\frametitle{Discrete Fourier transform}
 %Discrete form of Parseval's relation is 
 %\begin{eqnarray}
 %\sum_{k=0}^{N-1}|h_k|^2 = \frac{1}{N}\sum_{n=0}^{N-1}|H_n|^2
 %\label{eq:discrete_parseval}
-\end{eqnarray}
-\end{frame}
+%\end{eqnarray}
+%\end{frame}
 \begin{frame}
+\label{dft_periodicity}
 \frametitle{Periodicity of discrete Fourier transform}
 From Eq.\ref{eq:dft}, if we substitute $n$ with $n+N$, we have $H_n = H_{n+N}$. Therefore, discrete Fourier transform has periodicity of $N$.
 \begin{eqnarray}
@@ -352,22 +358,43 @@ H_{n+N} &=& \sum_{k=0}^{N-1}h_ke^{-i2\pi k(n+N)/N} \nonumber \\
 &=&\sum_{k=0}^{N-1}h_ke^{-i2\pi k(n)/N}e^{-i2\pi kN/N} \nonumber \\
 &=&H_n
 \end{eqnarray}
-Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$.
+Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$. We can see that discrete Fourier transform has $1/f_s$ period where $f_s = 1/\Delta=2*f_c$ is the sampling frequency.
 \end{frame}
 \begin{frame}
 \frametitle{Aliasing}
-
+If we have a signal with its bandlimit larger than $f_c$, we have following spectrum due to periodicity of DFT.\\
+\includegraphics[scale=0.1]{wiki_AliasedSpectrum.png}\\
+Aliased frequency is $f-N*f_s$ where $N$ is an integer.
 \end{frame}
 \begin{frame}
-\frametitle{Fast Fourier transform}
+\frametitle{Aliasing example: original signal}
+Let's say we have a sinusoidal signal of frequency 0.05. The sampling interval is 1. We have the signal
+\includegraphics[scale=0.2]{aliasing_original_signal.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: spectrum of original signal}
+and we have its spectrum
+\includegraphics[scale=0.3]{aliasing_original_dft.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: critical sampling of original signal}
+The critical sampling interval of the original signal is 10 which is half of its period.
+\includegraphics[scale=0.2]{worst_sample.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: under sampling of original signal}
+If we sampled the original sinusiodal signal with period 12, aliasing happens.\\
+\includegraphics[scale=0.4]{undersample12.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: DFT of under sampled signal}
+$f_c$ of undersampling is $\frac{1}{2*12}$, aliased frequency is $f - 2*f_c = $ and it has symmetric spectrum due to real signal.
+\includegraphics[scale=0.4]{undersample12_dft.png}
 \end{frame}
 \section{Calculate DFT with Python Numpy Package}
 \begin{frame}
-\frametitle{Discrete Fourier transform in Numpy or Scipy}
+\frametitle{Discrete Fourier transform}
 
-\end{frame}
-\begin{frame}
-\frametitle{Transform one dimensional data}
 \end{frame}
 \begin{frame}
 \frametitle{Transform more than one dimensional data}
@@ -379,17 +406,18 @@ Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$.
 \bibitem{SNGP} Supplementary Notes of General Physics by Jyhpyng Wang, \url{http://idv.sinica.edu.tw/jwang/SNGP/SNGP20090621.pdf}
 \bibitem{wiki_FS} \url{http://en.wikipedia.org/wiki/Fourier_series}
 \bibitem{wiki_FT} \url{http://en.wikipedia.org/wiki/Fourier_transform}
+\bibitem{wiki_aliasing} \url{http://en.wikipedia.org/wiki/Aliasing}
+\bibitem{wiki_sampling_theorem} \url{http://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}
 \bibitem{arfken} MATHEMATICAL METHODS FOR PHYSICISTS by George B. Arfken and Hans J. Weber. ISBN-13: 978-0120598762
 \bibitem{nr_3rd} Numerical Recipes 3rd Edition: The Art of Scientific Computing by William H. Press  (Author), Saul A. Teukolsky. ISBN-13: 978-0521880688
-\bibitem{nr_3rd_web} Chapter 12 and 13 in \url{http://www.nrbook.com/a/bookcpdf.php}
-\bibitem{scipy_fft}http://docs.scipy.org/doc/scipy-0.14.0/reference/fftpack.html
-\bibitem{scipy_signal}http://docs.scipy.org/doc/scipy-0.14.0/reference/signal.html
 \end{thebibliography}
 \end{frame}
 \begin{frame}
 \frametitle{References}
-\begin{thebibliography}{1}
-\bibitem{DSP_book} Digital Signal Processing: A Computer-Based Approach, 3e by Sanjit K. Mitra
+\begin{thebibliography}{3}
+\bibitem{nr_3rd_web} Chapter 12 and 13 in \url{http://www.nrbook.com/a/bookcpdf.php}
+\bibitem{scipy_fft}http://docs.scipy.org/doc/scipy-0.14.0/reference/fftpack.html
+\bibitem{scipy_signal}http://docs.scipy.org/doc/scipy-0.14.0/reference/signal.html
 \end{thebibliography}
 \end{frame}
 \section{}
@@ -412,7 +440,7 @@ Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$.
 %\item<1-> 2nd
 %\item<2-> 3rd
 %\item<3-> etc.
-%\hyperlink{1stpage}{\beamerbutton{go fuck}}
+%\hyperlink{1stpage}{\beamerbutton{ooxx}}
 %\end{itemize}
 %\end{frame}
 %\end{CJK}

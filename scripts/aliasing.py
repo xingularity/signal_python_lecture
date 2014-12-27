@@ -17,29 +17,39 @@ sl = 20.0*signal_interval
 def addParserOption():
     parser = OptionParser()
     parser.add_option("-d", "--downsample", dest="downInterval", help="down sample interval")
+    parser.add_option("", "--ftickinterval", dest="ftickinterval", help="frequency plot tick interval")
     options = parser.parse_args()[0]
     return options
 
 class SignalSampling(object):
-    def __init__(self, downInterval=None):
+    def __init__(self, downInterval=None, ftickinterval=0.05):
         x, signal, fbins, dft = self.signalAndDFT()
         downx= None
         downsignal = None
         downfbins = None
         downdft = None
         if (downInterval != None):
+            #If has downInterval, get downsampled signal and its spectrum
             downx, downsignal, downfbins, downdft = self.downSample(x, signal, 5, downInterval)
         plt.plot(x, signal, 'b', label="Original")
         if (downInterval != None):
+            #If has downInterval, plot downsampled signal
             plt.plot(downx, downsignal, 'ro--', label="down sampled")
         plt.xlabel(r'x')
         plt.ylabel(r'signal')
         plt.figure(2)
         plt.plot(fbins, np.abs(dft)**2/len(dft)**2, label="Original")
+        plt.xticks(np.arange(min(fbins), max(fbins)+0.05, ftickinterval))
         if (downInterval != None):
+            #If has downInterval, plot spectrum of downsampled signal
             plt.plot(downfbins, np.abs(downdft)**2/len(downdft)**2, 'ro--', label="down sampled")
+            #print the frequency of maximum power
+            index=(np.abs(downdft)**2/len(downdft)**2).argmax()
+            print("max power frequency of downsampled signal: "+str(downfbins[index]))
+            print("smallest frequency of the spectrum of downsampled signal: "+str(downfbins[0]))
+            print("df of spectrum of downsampled signal:"+str(downfbins[1]-downfbins[0]))
         plt.xlabel(r'frequency')
-        plt.ylabel(r'abs(signal_fft)')
+        plt.ylabel(r'abs(signal_fft)^2/N^2')
         plt.show()
 
     def signalAndDFT(self):
@@ -54,9 +64,9 @@ class SignalSampling(object):
         df = 1.0/int(sl/delta_org)/delta_org
         fbins = np.arange(-1.0*fc+df, fc+df, df)
         if ((x_len % 2) == 0):
-            fbins = np.arange(-1.0*fc+df, fc+0.5*df, df)
+            fbins = -1.0*fc+np.array(range(x_len))*df
         else:
-            fbins = np.arange(-1.0*fc+0.5*df, fc+0.5*df, df)
+            fbins = -1.0*fc+0.5*df+np.array(range(x_len))*df
         print(fbins.shape)
         print(dft.shape)
         return (x, signal, fbins, dft)
@@ -81,35 +91,30 @@ class SignalSampling(object):
         if ((x_len % 2) == 0):
             fc = 1.0/2.0/int(downInterval)
             df = 1.0/x_len/int(downInterval)
-            fbins = np.arange(-1.0*fc+df, fc+0.5*df, df)
+            fbins = -1.0*fc+np.array(range(x_len))*df
         else:
             fc = 1.0/2.0/int(downInterval)
             df = 1.0/x_len/int(downInterval)
-            fbins = np.arange(-1.0*fc+0.5*df, fc+0.5*df, df)
+            fbins = -1.0*fc+0.5*df+np.array(range(x_len))*df
         print(fbins.shape)
         print(dft.shape)
         return (x, signal, fbins, dft)
 
-class PlotObject(object):
-    def __init__(self):
-	    self.plotlist = {}
-	    self.plotlist = {0:SignalSampling}
-	    self.plothelp = {0:"SignalSampling"}
-    def getPlotObject(self, num):
-        return self.plotlist[num]
-
-    def showHelpList(self):
-    	for i in self.plothelp:
-            print(str(i) + ": " + str(self.plothelp[i]))
-
 def main(options):
-    generator = PlotObject()
     downInterval = None
     if (options.downInterval != None):
         downInterval = int(options.downInterval)
-        generator.getPlotObject(0)(downInterval)
+        if (options.ftickinterval != None):
+            ftickinterval = float(options.ftickinterval)
+            SignalSampling(downInterval, ftickinterval=ftickinterval)
+        else:
+            SignalSampling(downInterval)
     else:
-        generator.getPlotObject(0)()
+        if (options.ftickinterval != None):
+            ftickinterval = float(options.ftickinterval)
+            SignalSampling(ftickinterval=ftickinterval)
+        else:
+            SignalSampling()
 
 if __name__ == '__main__':
 	main(addParserOption())
