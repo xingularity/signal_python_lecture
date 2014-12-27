@@ -39,7 +39,7 @@ class OneFrequencySignal(object):
         plt.xlabel(r'x')
         plt.ylabel(r'signal')
         plt.figure(2)
-        plt.plot(fbins, np.abs(dft)**2/len(dft)**2, label="Original")
+        plt.plot(fbins, np.abs(dft)**2/len(dft)**2, label="dft")
         plt.xticks(np.arange(min(fbins), max(fbins)+0.05, ftickinterval))
         if (downInterval != None):
             #If has downInterval, plot spectrum of downsampled signal

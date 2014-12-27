@@ -81,29 +81,6 @@ b_k&=&\frac{2}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x) \sin \frac{2k\pi x}{L} dx
 \end{eqnarray}
 \end{frame}
 \begin{frame}
-\frametitle{Complex Fourier series}
-Using Euler's formula, equation (\ref{eq:fseries}) becomes 
-\begin{eqnarray}
-f(x)=a_0 + \sum_{k=1}^{\infty} \left(\frac{a_k - ib_k}{2} e^{ikx} + \frac{a_k + ib_k}{2}e^{-ikx}\right) \nonumber
-\end{eqnarray}
-Let $c_0 \equiv a_0$, $c_k \equiv \frac{a_k - ib_k}{2}$ and $c_{-k} \equiv \frac{a_k + ib_k}{2}$, we have
-\begin{eqnarray}
-f(x)&=&\sum_{m=-\infty}^{\infty} c_m e^{imx} \nonumber \\
-c_m&=&\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x) e^{-imx} dx
-\label{eq:cfseries}
-\end{eqnarray}
-$e^{imx}$ and $e^{inx}$ are also mutually orthogonal provided $n \neq m$ and it forms a complete set. Therfore, it can be used as orthogonal basis.\newline
-\end{frame}
-\begin{frame}
-\frametitle{Complex Fourier series}
-If $f(x)$ has $T$ period instead of $2\pi$, $x$ is replaced with $2\pi x /T$.
-\begin{eqnarray}
-f(x)&=&\sum_{m=-\infty}^{\infty} c_m e^{i\frac{2\pi mx}{T}} \nonumber \\
-c_m&=&\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{-i\frac{2\pi mx}{T}} dx, m = 0,1,2...
-\label{eq:cfseries_pT}
-\end{eqnarray}
-\end{frame}
-\begin{frame}
 \frametitle{Fourier series of step function}
 $f(x)$ is a periodic function with $2\pi$ period and it's defined as follows.
 \begin{eqnarray}
@@ -159,6 +136,29 @@ $f(x)$ is continuous and its derivative is piecewise continuous within the perio
 \begin{frame}
 \frametitle{Fourier series of full wave rectifier}
 \includegraphics[scale=0.3]{fullrectifier.png}
+\end{frame}
+\begin{frame}
+\frametitle{Complex Fourier series}
+Using Euler's formula, equation (\ref{eq:fseries}) becomes 
+\begin{eqnarray}
+f(x)=a_0 + \sum_{k=1}^{\infty} \left(\frac{a_k - ib_k}{2} e^{ikx} + \frac{a_k + ib_k}{2}e^{-ikx}\right) \nonumber
+\end{eqnarray}
+Let $c_0 \equiv a_0$, $c_k \equiv \frac{a_k - ib_k}{2}$ and $c_{-k} \equiv \frac{a_k + ib_k}{2}$, we have
+\begin{eqnarray}
+f(x)&=&\sum_{m=-\infty}^{\infty} c_m e^{imx} \nonumber \\
+c_m&=&\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x) e^{-imx} dx
+\label{eq:cfseries}
+\end{eqnarray}
+$e^{imx}$ and $e^{inx}$ are also mutually orthogonal provided $n \neq m$ and it forms a complete set. Therfore, it can be used as orthogonal basis.\newline
+\end{frame}
+\begin{frame}
+\frametitle{Complex Fourier series}
+If $f(x)$ has $T$ period instead of $2\pi$, $x$ is replaced with $2\pi x /T$.
+\begin{eqnarray}
+f(x)&=&\sum_{m=-\infty}^{\infty} c_m e^{i\frac{2\pi mx}{T}} \nonumber \\
+c_m&=&\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{-i\frac{2\pi mx}{T}} dx, m = 0,1,2...
+\label{eq:cfseries_pT}
+\end{eqnarray}
 \end{frame}
 \begin{frame}
 \frametitle{Fourier transform}
@@ -282,7 +282,7 @@ Autocorrelation is the cross-correlation of the signal with itself.
 \end{frame}
 \begin{frame}
 \frametitle{Uncertainty principle}
-One important properties of Fourier transform is uncertainty principle. It states that the more concentrated $f(x)$ is, the more spread its Fourier transform $\hat{f}(k)$ is.
+One important properties of Fourier transform is the uncertainty principle. It states that the more concentrated $f(x)$ is, the more spread its Fourier transform $\hat{f}(k)$ is.\\
 Without loss of generality, we consider $f(x)$ as a normalized function which means $\int_{-\infty}^{\infty}|f(x)|^2 dx = 1$, we have uncertainty relation:
 \begin{eqnarray}
 \left( \int_{-\infty}^{\infty}(x-x_0)^2|f(x)|^2 dx\right) \left( \int_{-\infty}^{\infty}(k-k_0)^2|\hat{f}(k)|^2 dk\right) \geqq \frac{1}{16\pi^2}
@@ -291,12 +291,24 @@ Without loss of generality, we consider $f(x)$ as a normalized function which me
 for any $x_0$ and $k_0$ $\in \mathbf{R}$.~\cite{wiki_FT}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier transform of a Gaussian function}
-
+\frametitle{Fourier transform of a Gaussian pulse}
+\begin{eqnarray}
+f(x)&=&f_0e^{\frac{-x^2}{2\sigma^2}}e^{ik_0x} \nonumber \\
+\hat{f}(k)&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-ikx}dx \nonumber \\
+&=&\frac{f_0}{1/\sigma^2} e^{\frac{-(k_0-k)^2}{2/\sigma^2}}\nonumber \\
+|\hat{f}(k)|^2&\varpropto&e^{\frac{-(k_0-k)^2}{1/\sigma^2}}\nonumber 
+\end{eqnarray}
+Wider the $f(x)$ spread, the more concentrated $\hat{f}(k)$ is.
 \end{frame}
 \begin{frame}
-\frametitle{Fourier transform of a Gaussian function with carrier}
-
+\frametitle{Fourier transform of a Gaussian pulse}
+Signals with different width.
+\includegraphics[scale=0.45]{gaussian_carrier.png}
+\end{frame}
+\begin{frame}
+\frametitle{Fourier transform of a Gaussian pulse}
+The bandwidth of the signals are different as well.
+\includegraphics[scale=0.45]{gaussian_carrier_dft.png}
 \end{frame}
 \section{Discrete Fourier transform}
 \begin{frame}
@@ -376,7 +388,7 @@ and we have its spectrum
 \end{frame}
 \begin{frame}
 \frametitle{Aliasing example: critical sampling of original signal}
-The critical sampling interval of the original signal is 10 which is half of its period.
+The critical sampling interval of the original signal is 10 which is half of the signal period.
 \includegraphics[scale=0.2]{worst_sample.png}
 \end{frame}
 \begin{frame}
@@ -426,22 +438,22 @@ Assuming we have a filter function $w(f)$ and a multi-frequency signal $f(t)$, w
 \frametitle{Filtering example: filtered signal}
 \includegraphics[scale=0.5]{filtered_signal.png}
 \end{frame}
-\section{Calculate DFT with Python Numpy Package}
-\begin{frame}
-\frametitle{Discrete Fourier transform}
-\end{frame}
-\begin{frame}
-\frametitle{fftshift}
-
-\end{frame}
-\begin{frame}
-\frametitle{Inverse transform}
-
-\end{frame}
-\begin{frame}
-\frametitle{Transform more than one dimensional data}
-
-\end{frame}
+%\section{Calculate DFT with Python Numpy Package}
+%\begin{frame}
+%\frametitle{Discrete Fourier transform}
+%\end{frame}
+%\begin{frame}
+%\frametitle{fftshift}
+%
+%\end{frame}
+%\begin{frame}
+%\frametitle{Inverse transform}
+%
+%\end{frame}
+%\begin{frame}
+%\frametitle{Transform more than one dimensional data}
+%
+%\end{frame}
 \section{References}
 \begin{frame}
 \frametitle{References}
