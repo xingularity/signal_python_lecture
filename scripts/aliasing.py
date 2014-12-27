@@ -1,6 +1,6 @@
 ## This program is to plot aliasing demonstration
 ## Author: Zong-han, Xie<icbm0926@gmail.com>
-## License: CC-4.0, by-nc-SA
+## License: CC-4.0, by-nc-sa
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,10 +18,11 @@ def addParserOption():
     parser = OptionParser()
     parser.add_option("-d", "--downsample", dest="downInterval", help="down sample interval")
     parser.add_option("", "--ftickinterval", dest="ftickinterval", help="frequency plot tick interval")
+    parser.add_option("-x", "", dest="exNum", help="signals to plot")
     options = parser.parse_args()[0]
     return options
 
-class SignalSampling(object):
+class OneFrequencySignal(object):
     def __init__(self, downInterval=None, ftickinterval=0.05):
         x, signal, fbins, dft = self.signalAndDFT()
         downx= None
@@ -100,21 +101,65 @@ class SignalSampling(object):
         print(dft.shape)
         return (x, signal, fbins, dft)
 
+class TwoFrequencySignal(OneFrequencySignal):
+    def __init__(self, downInterval=None, ftickinterval=0.05):
+        super().__init__(downInterval=downInterval, ftickinterval=ftickinterval)
+    def signalAndDFT(self):
+        x = np.arange(0, int(sl/delta_org), delta_org)
+        signal = np.zeros(x.shape)
+        another_f = signal_f/4.0
+        for i in range(len(signal)):
+            signal[i] = np.sin(2.0*np.pi*signal_f*x[i]) + np.sin(2.0*np.pi*another_f*x[i])
+        dft = scipyfft.fftshift(scipyfft.fft(signal))
+        #create shifted frquency bins
+        x_len = len(x)
+        fc = 1.0/2.0/delta_org
+        df = 1.0/int(sl/delta_org)/delta_org
+        fbins = np.arange(-1.0*fc+df, fc+df, df)
+        if ((x_len % 2) == 0):
+            fbins = -1.0*fc+np.array(range(x_len))*df
+        else:
+            fbins = -1.0*fc+0.5*df+np.array(range(x_len))*df
+        print(fbins.shape)
+        print(dft.shape)
+        return (x, signal, fbins, dft)
+
+class PlotObject(object):
+    def __init__(self):
+	    self.plotlist = {}
+	    self.plotlist = {0:OneFrequencySignal, 1:TwoFrequencySignal}
+	    self.plothelp = {0:"OneFrequencySignal",\
+        1:"TwoFrequencySignal"}
+    def getPlotObject(self, num):
+        return self.plotlist[num]
+	
+    def showHelpList(self):
+    	for i in self.plothelp:
+            print(str(i) + ": " + str(self.plothelp[i]))
+
 def main(options):
     downInterval = None
+    plotObj = PlotObject()
+    SignalObj=None
+    if (options.exNum == None):
+        plotObj.showHelpList()
+        sys.exit(0)
+    else:
+        SignalObj = plotObj.getPlotObject(int(options.exNum))
+
     if (options.downInterval != None):
         downInterval = int(options.downInterval)
         if (options.ftickinterval != None):
             ftickinterval = float(options.ftickinterval)
-            SignalSampling(downInterval, ftickinterval=ftickinterval)
+            SignalObj(downInterval, ftickinterval=ftickinterval)
         else:
-            SignalSampling(downInterval)
+            SignalObj(downInterval)
     else:
         if (options.ftickinterval != None):
             ftickinterval = float(options.ftickinterval)
-            SignalSampling(ftickinterval=ftickinterval)
+            SignalObj(ftickinterval=ftickinterval)
         else:
-            SignalSampling()
+            SignalObj()
 
 if __name__ == '__main__':
 	main(addParserOption())

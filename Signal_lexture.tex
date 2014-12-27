@@ -104,7 +104,7 @@ c_m&=&\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{-i\frac{2\pi mx}{T}} 
 \end{eqnarray}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier Series of step function}
+\frametitle{Fourier series of step function}
 $f(x)$ is a periodic function with $2\pi$ period and it's defined as follows.
 \begin{eqnarray}
 f(x)&=& 0, -\pi < x < 0 \nonumber \\
@@ -296,9 +296,6 @@ for any $x_0$ and $k_0$ $\in \mathbf{R}$.~\cite{wiki_FT}
 \end{frame}
 \begin{frame}
 \frametitle{Fourier transform of a Gaussian function with carrier}
-\end{frame}
-\begin{frame}
-\frametitle{Transfer function}
 
 \end{frame}
 \section{Discrete Fourier transform}
@@ -315,7 +312,7 @@ Sampling theorem: If a continuos signal $h(t)$ sampled with interval $\Delta$ ha
 h(t) &=& \Delta \sum_{n=-\infty}^{\infty} h_n \frac{\sin [2\pi f_c(t-n\Delta)]}{\pi (t-n\Delta)}
 \label{eq:sampling_theorem}
 \end{eqnarray}
-It's known as Whittaker–Shannon interpolation formula.
+It's known as Whittaker - Shannon interpolation formula.
 \end{frame}
 \begin{frame}
 \frametitle{Discrete Fourier transform}
@@ -358,7 +355,8 @@ H_{n+N} &=& \sum_{k=0}^{N-1}h_ke^{-i2\pi k(n+N)/N} \nonumber \\
 &=&\sum_{k=0}^{N-1}h_ke^{-i2\pi k(n)/N}e^{-i2\pi kN/N} \nonumber \\
 &=&H_n
 \end{eqnarray}
-Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$. We can see that discrete Fourier transform has $1/f_s$ period where $f_s = 1/\Delta=2*f_c$ is the sampling frequency.
+Critical frequency $f_c$ corresponds to $\frac{1}{2\Delta}$.\\
+We can see that discrete Fourier transform has $f_s$ period where $f_s = 1/\Delta=2*f_c$ is the sampling frequency.
 \end{frame}
 \begin{frame}
 \frametitle{Aliasing}
@@ -391,13 +389,58 @@ If we sampled the original sinusiodal signal with period 12, aliasing happens.\\
 $f_c$ of undersampling is $\frac{1}{2*12}$, aliased frequency is $f - 2*f_c = $ and it has symmetric spectrum due to real signal.
 \includegraphics[scale=0.4]{undersample12_dft.png}
 \end{frame}
+\begin{frame}
+\frametitle{Aliasing example: two frequency signal}
+Let's say we have a signal containing two sinusoidal signal of frequency 0.05 and 0.0125. The sampling interval is 1. We have the signal \\
+\includegraphics[scale=0.4]{two_f_signal.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: spectrum of two frequency signal}
+and we have its spectrum
+\includegraphics[scale=0.3]{two_f_dft.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: downsampled two frequency signal}
+Doing same undersampling with interval 12. \\
+\includegraphics[scale=0.4]{undersampled_two_f_signal.png}
+\end{frame}
+\begin{frame}
+\frametitle{Aliasing example: DFT of downsampled signal}
+We have the spectrum of downsampled signal. \\
+\includegraphics[scale=0.3]{undersampled_two_f_dft.png}
+\end{frame}
+\begin{frame}
+\frametitle{Filtering}
+We now want to get one of the two frequency out of the signal.We will adapt a proper rectangular window to the spectrum.\\
+Assuming we have a filter function $w(f)$ and a multi-frequency signal $f(t)$, we simply do following steps to get the frequency band we want.
+\begin{eqnarray}
+\mathcal{F}^{-1}\{w(f)\mathcal{F}\{f(t)\}\}
+\label{eq:dft_filter}
+\end{eqnarray}
+\end{frame}
+\begin{frame}
+\frametitle{Filtering example: filtering window and signal spectrum}
+\includegraphics[scale=0.5]{dft_and_filterwindow.png}
+\end{frame}
+\begin{frame}
+\frametitle{Filtering example: filtered signal}
+\includegraphics[scale=0.5]{filtered_signal.png}
+\end{frame}
 \section{Calculate DFT with Python Numpy Package}
 \begin{frame}
 \frametitle{Discrete Fourier transform}
+\end{frame}
+\begin{frame}
+\frametitle{fftshift}
+
+\end{frame}
+\begin{frame}
+\frametitle{Inverse transform}
 
 \end{frame}
 \begin{frame}
 \frametitle{Transform more than one dimensional data}
+
 \end{frame}
 \section{References}
 \begin{frame}
