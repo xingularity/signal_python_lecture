@@ -28,8 +28,10 @@ class Gaussian(object):
         plt.xlabel(r'frequency')
         plt.ylabel(r'normalized spectrum')
         #plot normalized amplitude to show the difference between frequency width
-        plt.plot(fbins1, (np.abs(dft1)/np.max(np.abs(dft1)))**2/len(dft1)**2, 'b')
-        plt.plot(fbins2, (np.abs(dft2)/np.max(np.abs(dft2)))**2/len(dft2)**2, 'g')
+        spectrum1 = np.abs(dft1)**2/(len(dft1))**2
+        spectrum2 = np.abs(dft2)**2/(len(dft2))**2
+        plt.plot(fbins1, spectrum1/np.max(spectrum1), 'b')
+        plt.plot(fbins2, spectrum2/np.max(spectrum2), 'g')
         plt.show()
         
     def gaussian(self,x, xcenter, sigma):
