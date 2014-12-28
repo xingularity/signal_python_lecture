@@ -100,23 +100,23 @@ $f(x)$ is piecewise continuous within the periodic region. Fourier series of $f(
 \includegraphics[scale=0.3]{step.png}
 \end{frame}
 \begin{frame}
-\frametitle{Fourier series of saw tooth function}
+\frametitle{Fourier series of triangular function}
 $f(x)$ is a periodic function with $2\pi$ period and it's defined as follows.
 \begin{eqnarray}
 f(x)&=& -x, -\pi < x < 0 \nonumber \\
 f(x)&=& x, 0 < x < \pi
-\label{eq:sawfunc}
+\label{eq:traiangularfunc}
 \end{eqnarray}
 Fourier series of $f(x)$ is
 \begin{eqnarray}
 f(x)= \frac{\pi}{2} - \frac{4}{\pi} \sum_{n=1,3,5...} \left( \frac{\cos nx}{n^2} \right)
-\label{eq:sawfunc_ft}
+\label{eq:traiangularfunc_ft}
 \end{eqnarray}
 $f(x)$ is continuous and its derivative is piecewise continuous within the periodic region. Fourier series of $f(x)$ converges at speed of $1/n^2$.
 \end{frame}
 \begin{frame}
-\frametitle{Fourier series of saw tooth function}
-\includegraphics[scale=0.3]{sawtooth.png}
+\frametitle{Fourier series of triangular function}
+\includegraphics[scale=0.3]{triangular.png}
 \end{frame}
 \begin{frame}
 \frametitle{Fourier series of full wave rectifier}
@@ -398,7 +398,7 @@ If we sampled the original sinusiodal signal with period 12, aliasing happens.\\
 \end{frame}
 \begin{frame}
 \frametitle{Aliasing example: DFT of under sampled signal}
-$f_c$ of undersampling is $\frac{1}{2*12}$, aliased frequency is $f - 2*f_c = $ and it has symmetric spectrum due to real signal.
+$f_c$ of downsampled signal is $\frac{1}{2*12}$, aliased frequency is $f - 2*f_c = -0.03333$ and it has symmetric spectrum due to real signal.
 \includegraphics[scale=0.4]{undersample12_dft.png}
 \end{frame}
 \begin{frame}

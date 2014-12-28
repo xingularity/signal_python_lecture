@@ -36,7 +36,7 @@ class StepFunction(object):
         """
         param:
               x: x coordinate
-              num: number of series
+              num: number of terms in series
         """
         fseries = np.zeros(x.shape)
         for i in range(len(x)):
@@ -47,7 +47,7 @@ class StepFunction(object):
                 j = j + 2
         return fseries
 
-class SawToothFunction(object):
+class TriangularFunction(object):
     def __init__(self):
         x = np.arange(-1.0*np.pi, 1.0*np.pi, 0.002*np.pi)
         y = np.zeros(x.shape)
@@ -60,7 +60,7 @@ class SawToothFunction(object):
         f5 = self.fseries(x, 5)
         f10 = self.fseries(x, 10)
         f20 = self.fseries(x, 20)
-        plt.plot(x, y, label="Saw-tooth Function")
+        plt.plot(x, y, label="Triangular function")
         plt.plot(x, f3, label="Fourier series to n = 3")
         plt.plot(x, f5, label="Fourier series to n = 5")
         plt.plot(x, f10, label="Fourier series to n = 10")
@@ -72,14 +72,14 @@ class SawToothFunction(object):
         """
         param:
               x: x coordinate
-              num: number of series
+              num: number of terms in series
         """
         fseries = np.zeros(x.shape)
         for i in range(len(x)):
             j = 1
             fseries[i] = 0.5*np.pi
             while(j<=num):
-                fseries[i] = fseries[i] + (4.0/np.pi)*np.cos(j*x[i])/float(j)**2
+                fseries[i] = fseries[i] - (4.0/np.pi)*np.cos(j*x[i])/float(j)**2
                 j = j + 2
         return fseries
 
@@ -108,7 +108,7 @@ class FullRectifierFunction(object):
         """
         param:
               x: x coordinate
-              num: number of series
+              num: number of terms in series
         """
         fseries = np.zeros(x.shape)
         for i in range(len(x)):
@@ -122,9 +122,9 @@ class FullRectifierFunction(object):
 class PlotObject(object):
     def __init__(self):
 	    self.plotlist = {}
-	    self.plotlist = {0:StepFunction, 1:SawToothFunction, 2:FullRectifierFunction}
+	    self.plotlist = {0:StepFunction, 1:TriangularFunction, 2:FullRectifierFunction}
 	    self.plothelp = {0:"StepFuntion", \
-                         1:"SawToothFunction", \
+                         1:"TriangularFunction", \
         				 2:"FullRectifierFunction"}
     def getPlotObject(self, num):
         return self.plotlist[num]
