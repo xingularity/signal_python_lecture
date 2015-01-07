@@ -33,12 +33,12 @@ Introduction to Fourier transform and signal analysis by Zong-han, Xie (\href{ic
 \begin{frame}
 \frametitle{Orthogonal condition}
 \begin{itemize}
-\item Any two vectors $\mathbf{a}$, $\mathbf{b}$ satisfied the following condition are mutually orthogonal. \newline
+\item Any two vectors $\mathbf{a}$, $\mathbf{b}$ satisfying following condition are mutually orthogonal. \newline
 \begin{eqnarray}
 \mathbf{a}^* \cdot \mathbf{b} = 0
 \label{eq:ortho_vec}
 \end{eqnarray}
-\item Any two functions $a(x)$, $b(x)$ satisfied the following condition are mutually orthogonal. \newline
+\item Any two functions $a(x)$, $b(x)$ satisfying the following condition are mutually orthogonal. \newline
 \begin{eqnarray}
 \int{a^*(x)} \cdot {b(x)} dx = 0
 \label{eq:ortho_func}
@@ -88,7 +88,7 @@ f(x)&=& 0, -\pi < x < 0 \nonumber \\
 f(x)&=& h, 0 < x < \pi
 \label{eq:stepfunc}
 \end{eqnarray}
-Fourier series of $f(x)$ is
+Fourier series expansion of $f(x)$ is
 \begin{eqnarray}
 f(x)= \frac{h}{2} + \frac{2h}{\pi} \left( \frac{\sin x}{1} + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + ...\right)
 \label{eq:stepfunc_ft}
@@ -107,7 +107,7 @@ f(x)&=& -x, -\pi < x < 0 \nonumber \\
 f(x)&=& x, 0 < x < \pi
 \label{eq:traiangularfunc}
 \end{eqnarray}
-Fourier series of $f(x)$ is
+Fourier series expansion of $f(x)$ is
 \begin{eqnarray}
 f(x)= \frac{\pi}{2} - \frac{4}{\pi} \sum_{n=1,3,5...} \left( \frac{\cos nx}{n^2} \right)
 \label{eq:traiangularfunc_ft}
@@ -126,7 +126,7 @@ f(t)&=& -\sin {\omega t}, -\pi < t < 0 \nonumber \\
 f(t)&=& \sin {\omega t}, 0 < t < \pi
 \label{eq:fullrectifier_func}
 \end{eqnarray}
-Fourier series of $f(x)$ is
+Fourier series expansion of $f(x)$ is
 \begin{eqnarray}
 f(t)= \frac{2}{\pi} - \frac{4}{\pi} \sum_{n=2,4,6...} \left( \frac{\cos n\omega t}{n^2 - 1} \right)
 \label{eq:fullrectifier_func_ft}
@@ -139,7 +139,7 @@ $f(x)$ is continuous and its derivative is piecewise continuous within the perio
 \end{frame}
 \begin{frame}
 \frametitle{Complex Fourier series}
-Using Euler's formula, equation (\ref{eq:fseries}) becomes 
+Using Euler's formula, Eq. \ref{eq:fseries} becomes 
 \begin{eqnarray}
 f(x)=a_0 + \sum_{k=1}^{\infty} \left(\frac{a_k - ib_k}{2} e^{ikx} + \frac{a_k + ib_k}{2}e^{-ikx}\right) \nonumber
 \end{eqnarray}
@@ -254,7 +254,7 @@ Let $h(x)$ be $f \ast g$ and $\hat{h}(k)$ be the Fourier transform of $h(x)$, we
 &&\int_{-\infty}^{\infty}G^*(k') e^{-ik'x}dk' dx\nonumber \\
 &=&\int_{-\infty}^{\infty} \frac{1}{2\pi} \int_{-\infty}^{\infty} F(k)G^*(k')e^{i(k-k')x} dk dk' \nonumber
 \end{eqnarray}
-By using \ref{eq:dirac_delta_fourier}, we have the Parseval's relation.
+By using Eq. \ref{eq:dirac_delta_fourier}, we have the Parseval's relation.
 \begin{eqnarray}
 \int_{-\infty}^{\infty}f(x)g^*(x) dx &=& \int_{-\infty}^{\infty}F(k)G^*(k)dk
 \label{eq:parseval_relation}
@@ -318,7 +318,7 @@ Critical sampling of a sine wave is two sample points per cycle. This leads to \
 f_c &=& \frac{1}{2\Delta}
 \label{eq:Nyquist_frequency}
 \end{eqnarray}
-Where $\Delta$ is the sampling interval. \\
+In above equation, $\Delta$ is the sampling interval. \\
 Sampling theorem: If a continuos signal $h(t)$ sampled with interval $\Delta$ happens to be bandwidth limited to frequencies smaller than $f_c$. $h(t)$ is completely determined by its samples $h_n$. In fact, $h(t)$ is given by 
 \begin{eqnarray}
 h(t) &=& \Delta \sum_{n=-\infty}^{\infty} h_n \frac{\sin [2\pi f_c(t-n\Delta)]}{\pi (t-n\Delta)}
