@@ -96,10 +96,9 @@ class PlotObject(object):
             print(str(i) + ": " + str(self.plothelp[i]))
 
 def main(options):
-    downInterval = None
     plotObj = PlotObject()
     SignalObj=None
-    if (options.exNum == None):
+    if options.exNum is None:
         plotObj.showHelpList()
         sys.exit(0)
     else:

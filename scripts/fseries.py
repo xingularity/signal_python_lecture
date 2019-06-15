@@ -135,7 +135,7 @@ class PlotObject(object):
 
 def main(options):
     generator = PlotObject()
-    if (options.exNum == None):
+    if options.exNum is None:
         generator.showHelpList()
         sys.exit(0)
     generator.getPlotObject(int(options.exNum))()

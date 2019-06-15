@@ -141,21 +141,21 @@ def main(options):
     downInterval = None
     plotObj = PlotObject()
     SignalObj=None
-    if (options.exNum == None):
+    if options.exNum is None:
         plotObj.showHelpList()
         sys.exit(0)
     else:
         SignalObj = plotObj.getPlotObject(int(options.exNum))
 
-    if (options.downInterval != None):
+    if options.downInterval is not None:
         downInterval = int(options.downInterval)
-        if (options.ftickinterval != None):
+        if options.ftickinterval is None:
             ftickinterval = float(options.ftickinterval)
             SignalObj(downInterval, ftickinterval=ftickinterval)
         else:
             SignalObj(downInterval)
     else:
-        if (options.ftickinterval != None):
+        if options.ftickinterval is None:
             ftickinterval = float(options.ftickinterval)
             SignalObj(ftickinterval=ftickinterval)
         else:
