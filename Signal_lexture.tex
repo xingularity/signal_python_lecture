@@ -1,6 +1,6 @@
 \documentclass{beamer}
-\usetheme{Warsaw}
-\usecolortheme{seahorse}
+\usetheme{CambridgeUS}
+\usecolortheme{crane}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{epstopdf}
@@ -9,18 +9,11 @@
 \usepackage{movie15}
 %\usepackage{CJKutf8}
 \title{Introduction to Fourier transform and signal analysis}
-\author{\texorpdfstring{Zong-han, Xie\newline\url{icbm0926@gmail.com}}{Zong-han, Xie}}
+\author{\texorpdfstring{Zong-han, Xie}{Zong-han, Xie}}
 \begin{document}
 %\begin{CJK}{UTF8}{cwmc}
 \begin{frame}
 \titlepage
-\end{frame}
-\begin{frame}[label=licensepage]
-\frametitle{License of this document}
-Introduction to Fourier transform and signal analysis by Zong-han, Xie (\href{icbm0926@gmail.com}{icbm0926@gmail.com}) is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. \newline
-\begin{center}
-\includegraphics[scale=1]{by-nc-sa.eps}
-\end{center}
 \end{frame}
 \AtBeginSection[]
 {
@@ -97,6 +90,7 @@ $f(x)$ is piecewise continuous within the periodic region. Fourier series of $f(
 \end{frame}
 \begin{frame}
 \frametitle{Fourier series of step function}
+Notice that even we have $n = 100$, there are still overshots phenomenon near 0. This is called Gibbs phenomenon.
 \includegraphics[scale=0.3]{step.png}
 \end{frame}
 \begin{frame}
@@ -117,25 +111,6 @@ $f(x)$ is continuous and its derivative is piecewise continuous within the perio
 \begin{frame}
 \frametitle{Fourier series of triangular function}
 \includegraphics[scale=0.3]{triangular.png}
-\end{frame}
-\begin{frame}
-\frametitle{Fourier series of full wave rectifier}
-$f(t)$ is a periodic function with $2\pi$ period and it's defined as follows.
-\begin{eqnarray}
-f(t)&=& -\sin {\omega t}, -\pi < t < 0 \nonumber \\
-f(t)&=& \sin {\omega t}, 0 < t < \pi
-\label{eq:fullrectifier_func}
-\end{eqnarray}
-Fourier series expansion of $f(x)$ is
-\begin{eqnarray}
-f(t)= \frac{2}{\pi} - \frac{4}{\pi} \sum_{n=2,4,6...} \left( \frac{\cos n\omega t}{n^2 - 1} \right)
-\label{eq:fullrectifier_func_ft}
-\end{eqnarray}
-$f(x)$ is continuous and its derivative is piecewise continuous within the periodic region. Fourier series of $f(x)$ converges at speed of $1/n^2$.
-\end{frame}
-\begin{frame}
-\frametitle{Fourier series of full wave rectifier}
-\includegraphics[scale=0.3]{fullrectifier.png}
 \end{frame}
 \begin{frame}
 \frametitle{Complex Fourier series}
